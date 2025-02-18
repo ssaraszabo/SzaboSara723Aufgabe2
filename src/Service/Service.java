@@ -44,14 +44,14 @@ class Service {
 //        }
 //        return result;
 //    }
-//
-//    public List<Product> getProductsSortedByPrice(int characterId, boolean ascending) {
-//        Character character = characterRepository.get(characterId);
-//        if (character == null) {
-//            throw new NoSuchElementException("Patient not found");
-//        }
-//        List<Product> products = new ArrayList<>(character.getProducts());
-//        products.sort(ascending ? Comparator.comparingDouble(Product::getPrice) : Comparator.comparingDouble(Product::getPrice).reversed());
-//        return products;
-//    }
-//}
+
+    public List<Product> getProductsSortedByPrice(int characterId, boolean ascending) {
+        Character character = characterRepository.get(characterId);
+        if (character == null) {
+            throw new NoSuchElementException("Patient not found");
+        }
+        List<Product> products = new ArrayList<>(character.getProducts());
+        products.sort(ascending ? Comparator.comparingDouble(Product::getPrice) : Comparator.comparingDouble(Product::getPrice).reversed());
+        return products;
+    }
+}
