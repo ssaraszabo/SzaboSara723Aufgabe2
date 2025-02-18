@@ -32,18 +32,18 @@ class Service {
         return characters;
     }
 
-//    public List<Patient> getPatientsByMedication(String disease) {
-//        List<Patient> result = new ArrayList<>();
-//        for (Patient patient : patientRepository.getAll()) {
-//            for (Medication medication : patient.getMedications()) {
-//                if (medication.getDisease().equalsIgnoreCase(disease)) {
-//                    result.add(patient);
-//                    break;
-//                }
-//            }
-//        }
-//        return result;
-//    }
+    public List<Character> getCharactersByPUniversum(String universum) {
+        List<Character> result = new ArrayList<>();
+        for (Character character : characterRepository.getAll()) {
+            for (Product product : character.getProducts()) {
+                if (product.getUniversum().equalsIgnoreCase(universum)) {
+                    result.add(character);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
 
     public List<Product> getProductsSortedByPrice(int characterId, boolean ascending) {
         Character character = characterRepository.get(characterId);
