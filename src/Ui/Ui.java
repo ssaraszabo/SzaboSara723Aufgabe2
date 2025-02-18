@@ -6,9 +6,10 @@ import Model.Character;
 import Service.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-class Ui {
+public class Ui {
     private final Service service;
     private final Scanner scanner = new Scanner(System.in);
 
@@ -35,7 +36,7 @@ class Ui {
                 case 2 -> addCharacter();
                 case 3 -> System.out.println(service.getCharacterSortedByRegion());
                 case 4 -> getCharactersByPUniversum();
-                case 5 -> sortMedicationsForPatient();
+                case 5 -> getProductsSortedByPrice();
                 case 6 -> {
                     System.out.println("Exiting...");
                     return;
@@ -59,12 +60,10 @@ class Ui {
     private void addCharacter() {
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
-        System.out.print("Enter age: ");
-        int age = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Region: ");
         String region = scanner.nextLine();
-        service.addCharacter(new Character(name, age, region));
+        service.addCharacter(new Character(name, region));
     }
 
     private void getCharactersByPUniversum() {
@@ -81,26 +80,24 @@ class Ui {
             }
         }
     }
-//
-//    private void sortMedicationsForPatient() {
-//        System.out.print("Enter patient ID: ");
-//        int patientId = scanner.nextInt();
-//        scanner.nextLine();
-//
-//        System.out.print("Sort by price (ascending/descending): ");
-//        String order = scanner.nextLine().trim().toLowerCase();
-//        boolean ascending = order.equals("ascending");
-//
-//        try {
-//            List<Medication> sortedMedications = service.getMedicationsSortedByPrice(patientId, ascending);
-//            System.out.println("Medications for Patient ID " + patientId + " sorted by price:");
-//            for (Medication med : sortedMedications) {
-//                System.out.println(med);
-//            }
-//        } catch (NoSuchElementException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//    }
-//
-}
 
+    private void getProductsSortedByPrice() {
+        System.out.print("Enter character ID: ");
+        int characterId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Sort by price (ascending/descending): ");
+        String order = scanner.nextLine().trim().toLowerCase();
+        boolean ascending = order.equals("ascending");
+
+        try {
+            List<Product> sortedProducts = service.getProductsSortedByPrice(characterId, ascending);
+            System.out.println("Products for Character ID " + characterId + " sorted by price:");
+            for (Product product : sortedProducts) {
+                System.out.println(product);
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
