@@ -6,7 +6,6 @@ import Model.Character;
 import Service.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 class Ui {
@@ -35,7 +34,7 @@ class Ui {
                 case 1 -> addProduct();
                 case 2 -> addCharacter();
                 case 3 -> System.out.println(service.getCharacterSortedByRegion());
-                case 4 -> findPatientsByMedication();
+                case 4 -> getCharactersByPUniversum();
                 case 5 -> sortMedicationsForPatient();
                 case 6 -> {
                     System.out.println("Exiting...");
@@ -67,21 +66,21 @@ class Ui {
         String region = scanner.nextLine();
         service.addCharacter(new Character(name, age, region));
     }
-//
-//    private void findPatientsByMedication() {
-//        System.out.print("Enter disease: ");
-//        String disease = scanner.nextLine();
-//        List<Patient> patients = service.getPatientsByMedication(disease);
-//
-//        if (patients.isEmpty()) {
-//            System.out.println("No patients found for this medication.");
-//        } else {
-//            System.out.println("Patients prescribed medication for " + disease + ":");
-//            for (Patient patient : patients) {
-//                System.out.println(patient);
-//            }
-//        }
-//    }
+
+    private void getCharactersByPUniversum() {
+        System.out.print("Enter universum: ");
+        String universum = scanner.nextLine();
+        List<Character> characters = service.getCharactersByPUniversum(universum);
+
+        if (characters.isEmpty()) {
+            System.out.println("No characters found.");
+        } else {
+            System.out.println("Characters found with products from " + universum + ":");
+            for (Character character : characters) {
+                System.out.println(character);
+            }
+        }
+    }
 //
 //    private void sortMedicationsForPatient() {
 //        System.out.print("Enter patient ID: ");
