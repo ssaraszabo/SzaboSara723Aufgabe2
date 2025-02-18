@@ -5,7 +5,7 @@ import Repository.Identifiable;
 /**
  * Model representing a Medication.
  */
-class Product implements Identifiable {
+public class Product implements Identifiable {
     private int id;
     private String name;
     private double price;

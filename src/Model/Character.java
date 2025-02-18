@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Model representing a Patient.
  */
-class Character implements Identifiable {
+public class Character implements Identifiable {
     private int id;
     private String name;
     private String region;
