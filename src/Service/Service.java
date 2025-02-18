@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * Service layer to handle business logic for medications and patients.
  */
-class Service {
+public class Service {
     private final IRepository<Product> productRepository;
     private final IRepository<Character> characterRepository;
 
